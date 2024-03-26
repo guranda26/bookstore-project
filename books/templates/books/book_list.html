@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookstore</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex: 1;
+        background: rgb(241, 241, 241);
+        margin: 10px;
+        padding: 10px;
+      }
+      .image-container {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        height: auto;
+        overflow: hidden;
+        margin: 10px;
+        padding: 10px;
+        max-width: 200px;
+      }
+      ul li {
+        list-style: none;
+        margin-bottom: 10px;
+        overflow: hidden;
+        font-size: 14px;
+      }
+
+      .image {
+        max-height: 500px;
+        opacity: 0.8;
+        overflow: hidden;
+        width: auto;
+        max-width: 150px;
+      }
+      .title {
+        overflow: auto;
+        font-size: 15px;
+        font-style: italic;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      }
+      .author {
+        width: 70%;
+        overflow: hidden;
+      }
+      .image img {
+        object-fit: cover;
+      }
+      .image img {
+        height: 200px;
+        width: 100%;
+        max-height: auto;
+        object-fit: cover;
+      }
+      .footer {
+        background-color: #0e345a;
+        width: 100%;
+        color: #fff;
+        padding: 30px;
+        position: relative;
+        bottom: 0;
+      }
+      h1 {
+        font-size: 3.5em;
+        width: 100%;
+      }
+      .gel {
+        color: #90a5bb;
+        font-weight: normal;
+        font-size: 15px;
+        margin-top: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    {% include './navbar.html' %} {% block content %}
+    <div class="flex-container">
+      <h1>წიგნები</h1>
+      {% for book in books %}
+      <div class="image-container">
+        <div class="image">
+          <img src="{{ book.img.url }}" alt="{{ book.title }}" />
+        </div>
+        <ul>
+          <li class="title">{{ book.title }}</li>
+          <li>{{ book.author }}</li>
+          <li class="author" style="font-weight: bold; font-size: 18px">
+            - {{ book.price }}<span class="gel"> ₾</span>
+          </li>
+          {% if book.img %} {% endif %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+    <footer class="footer">
+      <div class="text-center">© 2024 by წიგნის მაღაზიათა ქსელი ბიბლუსი</div>
+    </footer>
+    {% endblock content %}
+  </body>
+</html>

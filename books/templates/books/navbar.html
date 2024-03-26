@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .about-contact {
+        display: flex;
+      }
+      .info {
+        display: flex;
+        font-size: 18px;
+      }
+      .info a {
+        display: inline-block;
+        color: rgb(89, 182, 215);
+        text-decoration: none;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 10px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+          rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        background-color: rgb(241, 241, 241);
+        font-weight: bold;
+      }
+      .info a:hover {
+        background-color: #fff;
+        border: 2px solid rgb(102, 166, 192);
+        color: rgb(102, 166, 192);
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a class="navbar-brand" href="/">
+        <img
+          src="{% static 'images/logo.png' %}"
+          alt="Bookstore Logo"
+          width="100px"
+        />
+      </a>
+      <ul class="about-contact">
+        <li class="about info"><a href="{% url 'about' %}">About</a></li>
+        <li class="contact info"><a href="{% url 'contact' %}">Contact</a></li>
+      </ul>
+    </nav>
+    {% block navbar %} {% endblock navbar %}
+  </body>
+</html>
