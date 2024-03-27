@@ -58,6 +58,16 @@
         font-size: 20px;
         margin-right: 5px;
       }
+      .welcome {
+        font-size: 18px;
+        position: absolute;
+        top: 10%;
+        margin-top: 25px;
+        width: 49%;
+        left: 20%;
+        color: rgb(94, 155, 179);
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
@@ -69,6 +79,13 @@
           <li class="contact info">
             <a href="{% url 'contact' %}">Contact</a>
           </li>
+          {% if user.is_authenticated %}
+
+          <li class="info"><a href="{% url 'logout' %}">Logout</a></li>
+          <li class="welcome">Welcome, {{ user.username }}!</li>
+          {% else %}
+          <li class="info"><a href="{% url 'login' %}">Login</a></li>
+          {% endif %}
         </ul>
 
         <a class="cart" href="{% url 'cart_detail' %}"

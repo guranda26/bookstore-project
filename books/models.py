@@ -1,6 +1,9 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.conf import settings
+# from django.contrib.auth.admin import UserAdmin
+
+
 
 
 def validate_image_extension(value):
@@ -41,3 +44,4 @@ class CartItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity} of {self.book.title}"
+
