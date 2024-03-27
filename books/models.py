@@ -1,9 +1,11 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.conf import settings
+
 
 def validate_image_extension(value):
     import os
-    ext = os.path.splitext(value.name)[1]  # [0] returns path+filename
+    ext = os.path.splitext(value.name)[1]  
     valid_extensions = ['.jpg', '.jpeg', '.png']
     if not ext.lower() in valid_extensions:
         raise ValidationError('Unsupported file extension.')
@@ -25,3 +27,17 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return f"Message from {self.name}"
+
+class Cart(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Cart {self.id}"
+
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, related_name='items', on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.quantity} of {self.book.title}"

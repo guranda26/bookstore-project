@@ -1,0 +1,19 @@
+{% include './logo.html' %} {% if cart_items %} {% for item in cart_items %}
+<ul>
+  <li>{{ item.book.title }}: {{ item.quantity }}</li>
+</ul>
+
+{% endfor %}
+<p style="font-weight: bold">კალათა: {{ total_items }}</p>
+<a
+  href="{% url 'clear_cart' %}"
+  class="btn"
+  style="color: #2b44e2; font-weight: bold"
+  >გაასუფთავე კალათა</a
+>
+{% else %}
+<p style="font-weight: bold; font-size: 18px; color: rgb(68, 68, 68)">
+  კალათა ცარიელია
+</p>
+
+{% endif %}

@@ -85,6 +85,25 @@
         font-size: 15px;
         margin-top: 2px;
       }
+      .btn {
+        background-color: #0e5eb4df;
+        border: none;
+        color: #fff;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+          rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        font-size: 12px;
+      }
+      .btn:hover {
+        background-color: #104c8b;
+      }
     </style>
   </head>
   <body>
@@ -104,6 +123,18 @@
           </li>
           {% if book.img %} {% endif %}
         </ul>
+        <form action="{% url 'add_to_cart' book.id %}" method="post">
+          {% csrf_token %}
+          <button
+            class="btn"
+            style="width: 140px"
+            type="submit"
+            name="book_id"
+            value="{{ book.id }}"
+          >
+            კალათაში დამატება
+          </button>
+        </form>
       </div>
       {% endfor %}
     </div>

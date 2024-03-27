@@ -1,12 +1,21 @@
-{% load static %}
+{% load static %} {% load cart_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Navbar</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
       .about-contact {
         display: flex;
       }
@@ -32,21 +41,40 @@
         color: rgb(102, 166, 192);
         text-decoration: underline;
       }
+      .nav-items {
+        display: flex;
+        justify-content: space-between;
+      }
+      .cart {
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        margin-right: 50px;
+      }
+      .cart:hover {
+        color: rgb(38, 125, 232);
+      }
+      .fa-shopping-cart {
+        font-size: 20px;
+        margin-right: 5px;
+      }
     </style>
   </head>
   <body>
     <nav class="navbar">
-      <a class="navbar-brand" href="/">
-        <img
-          src="{% static 'images/logo.png' %}"
-          alt="Bookstore Logo"
-          width="100px"
-        />
-      </a>
-      <ul class="about-contact">
-        <li class="about info"><a href="{% url 'about' %}">About</a></li>
-        <li class="contact info"><a href="{% url 'contact' %}">Contact</a></li>
-      </ul>
+      {% include './logo.html' %}
+      <div class="nav-items">
+        <ul class="about-contact">
+          <li class="about info"><a href="{% url 'about' %}">About</a></li>
+          <li class="contact info">
+            <a href="{% url 'contact' %}">Contact</a>
+          </li>
+        </ul>
+
+        <a class="cart" href="{% url 'cart_detail' %}"
+          ><i class="fa fa-shopping-cart"></i> Cart ({% get_cart_item_count %})
+        </a>
+      </div>
     </nav>
     {% block navbar %} {% endblock navbar %}
   </body>
